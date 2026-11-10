@@ -1,0 +1,12 @@
+<!-- Copyright 2026 Christopher O'Connell -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+# Resolved parse-unit relationships
+
+This request-owned component parses external source copies and tracks lexical ModuleRef occurrences independently of external parse units. Each occurrence retains its syntax identity, owner, ordered children, references and acquisition bindings. It never reads files or uses a global provider. Acquisition and semantic contexts remain separate. The resolver's errors and source origins are retained; root-only monolithic extraction retains original source ownership and normalized parsed views.
+
+The algorithm follows SANY's `SpecObj.loadSpec`, `nonCircularityBody` and `calculateDependencies`, from TLA+ commit `dc6a944429fe3e26104d38f9ff792d2d5d83f307`, SpecObj.java SHA-256 `a3020275a21885b2da53eb44553e5a863ea969b4291392373a017affdf17efd9`. A link appends an edge before the cycle search. The search appends instancees to the actual extendees vector when absent; later links and ordering observe this mutation. Scheduling visits extendees, then instancees, then the unit, retaining source name-based deduplication. Distinct inner modules are not parse units and must not be added here as such. The caller supplies a lossless encoding of the Java UTF-16 name as the identity key and a diagnostic filename label.
+
+Depth, unit, edge and per-operation visit bounds return incomplete instead of silently truncating. A cycle or interrupted link invalidates that graph. The semantic driver generates and publishes each supported module in scheduled order; conditional level checking remains unimplemented. Source-derived controls validate this bounded component only, not whole-spec or differential parity.
+
+`AcquireFlatExternal` retains its private historical name but admits modeled lexical modules. It performs EXTENDS-first restarted discovery, first-binding lexical resolution, ordered direct-child propagation and bounded unambiguous indirect-extender propagation. Where multiple indirect extenders would depend on the Java Hashtable enumeration, it returns incomplete. Top-level body INSTANCE and named INSTANCE forms are admitted; LET/proof INSTANCE and other unsupported structures remain incomplete. File graph edges represent external acquisitions only. An absent resolver result can fall back to a bounded root-only monolith scan; missing modules remain incomplete rather than fabricated diagnostics. UTF-8 and LF output are the modeled platform domain. Acquisition success alone does not establish semantic or phase completion.

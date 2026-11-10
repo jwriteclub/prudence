@@ -1,0 +1,7 @@
+---- MODULE Root ----
+THEOREM Result == TRUE
+<1>1. INSTANCE A
+<1>2. DEFINE I == INSTANCE A
+<1>3. I!F BY I!T DEF I!F
+<1> QED OBVIOUS
+====

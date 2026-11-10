@@ -1,0 +1,64 @@
+Prudence
+Copyright 2026 Christopher O'Connell
+Licensed under the Apache License, Version 2.0; see LICENSE.
+
+Prudence contains material derived from the projects below. Exact source
+paths, revisions and SHA-256 hashes are in PROVENANCE.
+
+TLA+ (SANY)
+  Copyright (c) 2003 Compaq Corporation. MIT license, licenses/TLAplus.txt.
+  SANY source revision dc6a944429fe3e26104d38f9ff792d2d5d83f307; grammar
+  SHA-256 bfc981f31c205333f478b773ab108159b5e2d339b659d33b0f920d56ebf4253d.
+  Derived from it: the SANY grammar, parser support and translated actions;
+  the internal semantic error definitions and accumulator; the builtin
+  descriptors; the context and symbol foundation; the semantic Generator
+  logic; and the concrete semantic-node constructors.
+
+  The internal module relationship, cycle, scheduling and source-acquisition
+  algorithms derive from SANY's SpecObj, ParseUnit, FileUtil,
+  MonolithSpecExtractor (Copyright 2020 Microsoft Research) and related
+  module-analysis code at the same revision, under licenses/TLAplus.txt.
+  They do not yet establish complete module-graph equivalence.
+
+  The embedded standard modules are unmodified TLA+ project sources,
+  Copyright (c) 2003 Compaq Corporation, under licenses/TLAplus.txt. Their
+  JAR and source revision pins and byte hashes are in
+  internal/standard/README.md.
+
+JavaCC 4.0
+  Copyright 2003 Sun Microsystems, Inc., under licenses/JavaCC.txt; its
+  source notice is in licenses/JavaCC-notice.txt. The parser's diagnostic
+  formatting and generated behavior follow JavaCC 4.0.
+
+Unicode
+  The Java uppercase and BMP decimal-digit mappings derive from Unicode 13.0
+  data in Eclipse Temurin 17.0.21+9; see licenses/Unicode.md. The original
+  jigo source paths and SHA-256 hashes are in PROVENANCE.
+
+Test fixtures
+  Fixture sources and byte hashes for each directory below are in
+  PROVENANCE.
+
+  testdata/remaining-selectors: unmodified TLA+ project and TLA+ Examples
+  sources, or mechanical mutants of them, under licenses/TLAplus.txt and
+  licenses/TLAplus-Examples.txt (Copyright (c) 2016 The TLA+ project and
+  other contributors).
+
+  testdata/clean-rejections: recorded sany-conformance cases. Some are fuzz
+  outputs or mechanical mutants of TLA+ project sources
+  (licenses/TLAplus.txt); of tlaplus/tlapm sources, including its unmodified
+  library/TLAPS.tla (Copyright (c) 2008 INRIA and Microsoft Corporation,
+  Copyright (c) 2023 Linux Foundation; BSD-2-Clause, licenses/tlapm.txt); and
+  of tlaplus-x/tlx sources (Copyright (c) 2026 The tlx authors; MIT,
+  licenses/tlx.txt).
+
+  testdata/label-extra-order: recorded sany-conformance cases. Some are fuzz
+  outputs of tlaplus/tlapm sources, including its unmodified
+  library/TLAPS.tla and library/FiniteSets.tla (BSD-2-Clause,
+  licenses/tlapm.txt), and of tlaplus-x/tlx sources (MIT, licenses/tlx.txt).
+
+  testdata/diagnostic-unit: recorded sany-conformance cases. They are fuzz
+  outputs of tlaplus/tlapm sources, including its unmodified
+  library/TLAPS.tla (BSD-2-Clause, licenses/tlapm.txt); of TLA+ project
+  sources (licenses/TLAplus.txt); and of tlaplus-x/tlx sources (MIT,
+  licenses/tlx.txt).

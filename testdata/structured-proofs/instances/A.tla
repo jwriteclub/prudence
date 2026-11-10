@@ -1,0 +1,4 @@
+---- MODULE A ----
+F == TRUE
+THEOREM T == TRUE OBVIOUS
+====

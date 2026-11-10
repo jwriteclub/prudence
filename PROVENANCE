@@ -1,0 +1,194 @@
+Copyright 2026 Christopher O'Connell
+SPDX-License-Identifier: Apache-2.0
+
+Generated parser and lexer: copied from jigo commit 66db2d7. The SHA-256 of each jigo source file follows.
+532ee08b7d28c759cd7bf6453b1e5e85fb2c65b413c421a82a5015efa3186f80  generated/sanyparser/constants.go
+4a59831c8f6deecd591cabfe72890f4c80e70e9b65f78dea524b18e7c47bc3b3  generated/sanyparser/digits.go
+08e2764c022b8a21e52a8aadea561b8b80f7002e24d75ae75751d2caec7e4032  generated/sanyparser/facade.go
+93f97342e11f48f03e4f9e0bd68a1b1c6fcc740ae57350cb24e92ed3f74ddb0d  generated/sanyparser/formatter.go
+ab3c16b96cc6d0f472282e055e149be92d06b99fc63828408c1c31c9cf8876a8  generated/sanyparser/junction.go
+b1161ea818ad3f716235bad6efe3575b6b62c2a8c7d0d25c6c77af85dc66d0ed  generated/sanyparser/location.go
+66b09c3b3d5a07b5b86767830acd20d629ad04b9a8fb64da2287eebaea047133  generated/sanyparser/operator_stack.go
+596d066621197cae965099cf75ba0930dbe3851b439fd8acc51dfad915c38a74  generated/sanyparser/operators.go
+f7ea964b563872f258116d5894d221c00eb7438fedf03c29b779ba0376e5b6b0  generated/sanyparser/parse_errors.go
+2555ec3751ab1da4d1398a265d2457525d69e15b76dd7a8d518c0ccaa9e35ac3  generated/sanyparser/parser.go
+f1b2a8efb1814fdf1bfcc36555e353754111d8c3096ee75d42c7a6f20cdf5a4b  generated/sanyparser/parser_class.go
+b31cdfb84f51ab7c29271a8e0b9c4b4ce47e0daa3ee44fa1534deda9a4674ba3  generated/sanyparser/parser_engine_actions.go
+9ae6cc7c46a845e551e0552374a416fe9c6a4d2d566249a27aea1555c93be863  generated/sanyparser/parser_expression_actions.go
+9fe9a27eaad97c27f3f75c41766e3b4a9144483b957141f07efc443a44c34e43  generated/sanyparser/parser_module_actions.go
+390cdbc56d11b55b7a20583421985e58d392e638309648ec65b4a296750e2083  generated/sanyparser/parser_module_simple_actions.go
+21d398fbee6b178696e875febec8c7ff9339e7eb267bda6ced9fc600553dbd2c  generated/sanyparser/parser_proof_assume_prove.go
+b766cf08b1706aa9b724efd1b81744e8be2fc8547f4b3d7c4d378bfba87aabe7  generated/sanyparser/parser_proof_assumption.go
+7cfbc62ec37968ad3e6b0447a7c02038f18e14474bdbeb291a033c195916c3eb  generated/sanyparser/parser_proof_callbacks.go
+1fa96bffe4b72b1308273fa79e381eb74a90c9d0e5e82166164cfda4c653c282  generated/sanyparser/parser_proof_maybe_bound.go
+ef55beb939ba08932188fe17d963b15d58813da05df499752bf50f1a3659aedb  generated/sanyparser/parser_proof_new_symb.go
+9c257463dde9b06002620067710bdf29669e2cf1a1f5e0dc3d501f502a418eeb  generated/sanyparser/parser_proof_proof.go
+fa214ae203e0050677db4b1c12f207c82fc3f34cb4428c44d4e64fdadf4840d9  generated/sanyparser/parser_proof_steps.go
+0ba5b3472c79fcce65773a7d3d3a77d1b3cc2ee8a097c241c43920eb9cbfebfe  generated/sanyparser/parser_proof_theorem.go
+9631cacd98e632dc387939560edaae4473319a97ab91073aa83f269e6e6b867d  generated/sanyparser/parser_proof_use.go
+7cb818bdd27db124331b3bc1148f5f995d5451117df9b844bc2e57a2d0fbac5e  generated/sanyparser/parser_token_actions.go
+ffea2d83bc68e28edeba759306b457efb5f67f6aa43c973fd27d1fe1b5b233e0  generated/sanyparser/proof.go
+2688e3848150150f5cfcf1c419ae19a5ba46944c115242362e84813d88fb11c7  generated/sanyparser/reduce_string.go
+321b985af7a70e44b17d0611cc411d804afddf56d95f3710a2c8997eb01dd336  generated/sanyparser/state_helpers.go
+c94a08849f766491cdf46df56f3ee2da3dc3ee2a466526276e5e95297667e8cb  generated/sanyparser/support_context.go
+3572da242284dea02268f53c11b36ee0f0dc5f91d5999ad52af9191cf473036e  generated/sanyparser/token_kinds.go
+bf6e4ce18dcc2836f524dd5c875d50080c1eaf563096911d0d27997b034bbd91  generated/sanyparser/token_preview.go
+8b5989a4259932f9623db8f66256d8a966ed1b22000cbb85b5df45c8e670f8ab  generated/sanyparser/tree.go
+b1b9a72c00ed5bd77f0dd9a63376d7f8f69ff9d7c7cacc0bf2a8e621f984258f  generated/sanyparser/values.go
+47c64a1fc868a2050e52c0d38970d60fc8a10331da3e53ede72e1c879783e28c  generated/sany/sany.go
+fb904026d3d2367ef3ffd0a4e4f8c3ea57a3c0d445fc32f89e15692830d7ea88  generated/sany/tables.go
+d783afc5fbd841ef0e292560bcd119336ad49345670c831eb38e462a308c6f84  lexer/const_tables.go
+5d78a7575c53360334e9f8a09ad3a342165fa69c29c963d691963114fcf97c6f  lexer/context.go
+c0ba711945a29512d3ed2e2a89913e50e77ce0ec268e7d056af8e3edc3bde692  lexer/dfa.go
+17779074596ce7684a9492e8b4b4d437d4691b9352e3337463233041cda07fad  lexer/dfa_context.go
+43a4f90e6b3afdea0d7f91d6afc1434649278ee6904dee8d71e4aff42985c0f2  lexer/lexer.go
+cf7a0e327becb8f5ef56a1e3f53c60890586dd853fb7226681f810026472d632  parserrt/bound.go
+96264af79e55c234098badfbd615a2bf77188c1d8f47adc4c1bb2be0ae8d4453  parserrt/diagnostic.go
+86d318631a05fabace1c3484f0879e8a5d1daa8533014e5e1de4595f326261f8  parserrt/message.go
+2db7a6e191cf9a654ee0ad361cf4d54139abbef57ee3399df707b2a1b68f9a0c  parserrt/runtime.go
+a5b6a4fec054385d855bb5a16556f70988f7d3d51fa90126770ba520b8a1ca40  recursion/options.go
+39cea92be8f5cd3c3f690f30b23cc6a9b2bd48e30d5e817a414ad23ca5eb85f1  recursion/traversal.go
+adcc1f62b70b6d939237d28320fd9c6efcebb5190f2546c191f5baa70370859e  internal/sanylex/bindings.go
+
+Imports in the copied files were rewritten from jigo/ to github.com/jwriteclub/prudence/internal/.
+Changes to the copied parser:
+- facade.go exposes the structured failure and the completed body nodes.
+- state_helpers.go owns partial-body capture and reports indentation source positions.
+- parser_module_actions.go records completed outer body nodes.
+- token_preview.go keeps byte ranges on synthetic definition markers.
+- tree.go exposes internal node positions.
+- parse_errors.go keeps positions for recorded errors.
+- parser_expression_actions.go and parser_engine_actions.go attach existing structured positions to translated errors.
+- operator_stack.go positions its rejections at the first block their message cites.
+- lexer/lexer.go exposes its source byte ranges, and generated/sany/sany.go exposes per-editor coordinate snapshots.
+The other copied files change only in their imports; that includes proof.go and the parserrt files.
+Added in Prudence, not copied from jigo, so it has no source hash: internal/generated/sanyparser/proof_runtime.go. Its IsProofRuntimeFailure recognizes exactly a parserrt.OperationalError whose direct cause is proof.go's errProofRuntime sentinel.
+The four private read-only lookup datasets syntaxNodeImageStrings, javaDigitStarts, canonicalOperatorData and operatorSynonyms keep their array/slice representation. Callers never mutate them or store per-call state in them.
+
+
+Fixture source: pinned TLA+ dc6a944429fe3e26104d38f9ff792d2d5d83f307, class/tla2sany/StandardModules; MIT, see licenses/TLAplus.txt.
+071da69e5eea383d361ef308ba12ecc931bf968fcea98175c3bca419bbd8cbf2  testdata/Integers.tla
+73f2a68412039aa86f37ad08f0d0fef50fa8327d0ad8806f515548c75e9d9d84  testdata/Naturals.tla
+f613cffe14133769f0972b6f6e0139aaf0773004a51bac88ada382426e3eb7f4  testdata/Sequences.tla
+
+Fixture source: sany-conformance recorded cases, files verbatim. B-test-model-suite-* are TLA+ dc6a944429fe3e26104d38f9ff792d2d5d83f307 tlatools/org.lamport.tlatools/test-model/suite; MIT, see licenses/TLAplus.txt. B-specifyingsystems-fifo-apinnerfifo-d2848b is TLA+ Examples 0e32a039a4286cc3e1b0f70c00eaff3178d49f85 specifications/SpecifyingSystems/FIFO; MIT, see licenses/TLAplus-Examples.txt. The C-* cases are sany-conformance mechanical mutants (seed 20261103) of those sources, or of TLA+ general/tests/test206.tla for C-general-tests-*, under the same licenses.
+8706d74891957f6d7ed84715fea05bd869212b47802dbbd96269fb4be15ed93c  testdata/remaining-selectors/B-specifyingsystems-fifo-apinnerfifo-d2848b/APInnerFIFO.tla
+8b2cbd4533a157ae0760e3117e3c008fb9a31dc3673005fc8b537d3879de1bfc  testdata/remaining-selectors/B-specifyingsystems-fifo-apinnerfifo-d2848b/Channel.tla
+6971e25b26afd099fbeba9dd2f48e85dbfbd3461f75a01491613351211a6f907  testdata/remaining-selectors/B-specifyingsystems-fifo-apinnerfifo-d2848b/InnerFIFO.tla
+6c787f9ef900016de4be1068ec0f91721677f230bcf0510694c1053f02ba41e5  testdata/remaining-selectors/B-test-model-suite-test206-8e93d4/test206.tla
+bf5ff7f32e07c37f2d7bee29d268f315f801fc0941192bcf5fc3a9a5378e89e0  testdata/remaining-selectors/B-test-model-suite-test206-8e93d4/test206a.tla
+3fa36e9038bcb6377fdc63c2db093aecf662001eff6db891589090d0a10bffc0  testdata/remaining-selectors/B-test-model-suite-test216-dde257/test216.tla
+c447061e3b8c9bfeccba01e4c6a7b9a9bdae9a255cd43b7e823275855a2590b1  testdata/remaining-selectors/B-test-model-suite-test216-dde257/test216a.tla
+3c8a9ca7b2e3a4b0e25d6ddfb239ac060fb29c4e833effaa7259bf146a28186a  testdata/remaining-selectors/B-test-model-suite-test216-dde257/test216b.tla
+09e98415f4b672f20cd0018a18f44de4ac034d83f1b63006f99565d09d6d8e58  testdata/remaining-selectors/B-test-model-suite-test216-dde257/test216c.tla
+bf5ff7f32e07c37f2d7bee29d268f315f801fc0941192bcf5fc3a9a5378e89e0  testdata/remaining-selectors/B-test-model-suite-test219-0f575e/test206a.tla
+a5ad52bb53654a1bfbad6de843e49fa32c2f0ca5c91efac43013f14bdec61b98  testdata/remaining-selectors/B-test-model-suite-test219-0f575e/test219.tla
+8695d02c5f2c6abddd2c89ce2e0d2a89bf9f0b42df3350c28276236c3c9811db  testdata/remaining-selectors/B-test-model-suite-test219-0f575e/test219a.tla
+05a6c82d7239b64e67730c66d8475a56dcca3756dc219b166595eb4727866407  testdata/remaining-selectors/C-general-tests-test206-ab9bff-unknown-name/test206.tla
+dbd5586ec9d61b5b69dd898d9ae33640f8bd3e00aa3897b47cd8871991734efe  testdata/remaining-selectors/C-general-tests-test206-ab9bff-unknown-name/test206a.tla
+6101c999d49c9fe4f36478cfb363c8e2703bdb140cc66a21130e780a7cfb7322  testdata/remaining-selectors/C-specifyingsystems-fifo-apinnerfifo-d2848b-misalign-junction/APInnerFIFO.tla
+8b2cbd4533a157ae0760e3117e3c008fb9a31dc3673005fc8b537d3879de1bfc  testdata/remaining-selectors/C-specifyingsystems-fifo-apinnerfifo-d2848b-misalign-junction/Channel.tla
+6971e25b26afd099fbeba9dd2f48e85dbfbd3461f75a01491613351211a6f907  testdata/remaining-selectors/C-specifyingsystems-fifo-apinnerfifo-d2848b-misalign-junction/InnerFIFO.tla
+b0b7f8e6ac4fc9e3ddbec625f701996f69a88bbe8b8e7866358254f7f60a35ac  testdata/remaining-selectors/C-test-model-suite-test206-8e93d4-misalign-junction/test206.tla
+bf5ff7f32e07c37f2d7bee29d268f315f801fc0941192bcf5fc3a9a5378e89e0  testdata/remaining-selectors/C-test-model-suite-test206-8e93d4-misalign-junction/test206a.tla
+bf5ff7f32e07c37f2d7bee29d268f315f801fc0941192bcf5fc3a9a5378e89e0  testdata/remaining-selectors/C-test-model-suite-test219-0f575e-bad-arity/test206a.tla
+adcd175f1dca17464a44058308ee6b1bedab6f5079ecd3760d5729f8d34f0a36  testdata/remaining-selectors/C-test-model-suite-test219-0f575e-bad-arity/test219.tla
+8695d02c5f2c6abddd2c89ce2e0d2a89bf9f0b42df3350c28276236c3c9811db  testdata/remaining-selectors/C-test-model-suite-test219-0f575e-bad-arity/test219a.tla
+
+Destination source SHA-256 (after transformations):
+88fde2ef409a130293ffb47c8c2fd359705eecf9bf1d53efc402562b814356e2  internal/generated/sany/sany.go
+9fc8081f64d5a1a4654e0ad1c16f03e454ba85b3bbc758553b222187cadd9287  internal/generated/sany/tables.go
+532ee08b7d28c759cd7bf6453b1e5e85fb2c65b413c421a82a5015efa3186f80  internal/generated/sanyparser/constants.go
+4a59831c8f6deecd591cabfe72890f4c80e70e9b65f78dea524b18e7c47bc3b3  internal/generated/sanyparser/digits.go
+7c6103438fb56d933308f5609654a59a23b9b8eba2e5e8f6afbee4e3a27f23d7  internal/generated/sanyparser/facade.go
+e967d9ad5b2581782b00b74b81d6c3841817a4d13beffa378d4dcc67aca6f0ab  internal/generated/sanyparser/formatter.go
+ab3c16b96cc6d0f472282e055e149be92d06b99fc63828408c1c31c9cf8876a8  internal/generated/sanyparser/junction.go
+b1161ea818ad3f716235bad6efe3575b6b62c2a8c7d0d25c6c77af85dc66d0ed  internal/generated/sanyparser/location.go
+fd644ddb38b9d49d6cd554c8a1962ab185f364cf01233ffe41dbb6bb9f4e0bf1  internal/generated/sanyparser/operator_stack.go
+596d066621197cae965099cf75ba0930dbe3851b439fd8acc51dfad915c38a74  internal/generated/sanyparser/operators.go
+206ed554111afc9205853bed222a74229df37a7b3d9c0508ab1700044764567d  internal/generated/sanyparser/parse_errors.go
+db4d2d812b74cd1e8e6c7231dc336fc462f3a02956497551a9777a116bad537f  internal/generated/sanyparser/parser.go
+f1b2a8efb1814fdf1bfcc36555e353754111d8c3096ee75d42c7a6f20cdf5a4b  internal/generated/sanyparser/parser_class.go
+7f7bfd13755cd06604d9fb59d64039e14a1506f01145899151662f0fc5d104b9  internal/generated/sanyparser/parser_engine_actions.go
+9797a8c6ca83a9251353bb0f3f2a7ee09a7a55f45905a0f08c9d0a8190dfb9f3  internal/generated/sanyparser/parser_expression_actions.go
+0e932659a353356834edb8c61620e8f53d5d651b5d301b406d7065197aedfe29  internal/generated/sanyparser/parser_module_actions.go
+390cdbc56d11b55b7a20583421985e58d392e638309648ec65b4a296750e2083  internal/generated/sanyparser/parser_module_simple_actions.go
+21d398fbee6b178696e875febec8c7ff9339e7eb267bda6ced9fc600553dbd2c  internal/generated/sanyparser/parser_proof_assume_prove.go
+b766cf08b1706aa9b724efd1b81744e8be2fc8547f4b3d7c4d378bfba87aabe7  internal/generated/sanyparser/parser_proof_assumption.go
+7cfbc62ec37968ad3e6b0447a7c02038f18e14474bdbeb291a033c195916c3eb  internal/generated/sanyparser/parser_proof_callbacks.go
+1fa96bffe4b72b1308273fa79e381eb74a90c9d0e5e82166164cfda4c653c282  internal/generated/sanyparser/parser_proof_maybe_bound.go
+ef55beb939ba08932188fe17d963b15d58813da05df499752bf50f1a3659aedb  internal/generated/sanyparser/parser_proof_new_symb.go
+9c257463dde9b06002620067710bdf29669e2cf1a1f5e0dc3d501f502a418eeb  internal/generated/sanyparser/parser_proof_proof.go
+666d0d073773ed5fd4c17fe697e17f4604d9fcae061bea8f6fc71c9edafb6d19  internal/generated/sanyparser/parser_proof_steps.go
+0ba5b3472c79fcce65773a7d3d3a77d1b3cc2ee8a097c241c43920eb9cbfebfe  internal/generated/sanyparser/parser_proof_theorem.go
+9631cacd98e632dc387939560edaae4473319a97ab91073aa83f269e6e6b867d  internal/generated/sanyparser/parser_proof_use.go
+1c4a689031e0f512e0cba1f8966e6e70003500d3c34662bf61008ec2d66505e0  internal/generated/sanyparser/parser_token_actions.go
+5cfaf681492bbcdca66d822a6438db9e5a5a98ca4f05e1a899eae23f4f678425  internal/generated/sanyparser/proof.go
+2688e3848150150f5cfcf1c419ae19a5ba46944c115242362e84813d88fb11c7  internal/generated/sanyparser/reduce_string.go
+599c7f7f09f6485d15861b32f9abe540c25133c936454f0b8e25b7f6cc0edca3  internal/generated/sanyparser/state_helpers.go
+1c1e7d323f92fda229f6e097a844eceadbb3a1493781b1bf2926ea7c4c492670  internal/generated/sanyparser/support_context.go
+3572da242284dea02268f53c11b36ee0f0dc5f91d5999ad52af9191cf473036e  internal/generated/sanyparser/token_kinds.go
+b058ea906ae38b7c78b8a61da7199e29e4604aa953e1f481a4cf14b9fabcf1c8  internal/generated/sanyparser/token_preview.go
+e15cf1d5e5952e098bb81b8f41710dd400df2f38fdcf4c6d1a7bac3bfae66d9b  internal/generated/sanyparser/tree.go
+b1b9a72c00ed5bd77f0dd9a63376d7f8f69ff9d7c7cacc0bf2a8e621f984258f  internal/generated/sanyparser/values.go
+741d2dc25abe9fd2de34137b766d875ca106cfef72baa308958d488dc793d159  internal/internal/sanylex/bindings.go
+d783afc5fbd841ef0e292560bcd119336ad49345670c831eb38e462a308c6f84  internal/lexer/const_tables.go
+5d78a7575c53360334e9f8a09ad3a342165fa69c29c963d691963114fcf97c6f  internal/lexer/context.go
+c0ba711945a29512d3ed2e2a89913e50e77ce0ec268e7d056af8e3edc3bde692  internal/lexer/dfa.go
+17779074596ce7684a9492e8b4b4d437d4691b9352e3337463233041cda07fad  internal/lexer/dfa_context.go
+5e97ba87a5e62dd13b5590cad155775d9ae83342d706ebc3a4f631348aacf17a  internal/lexer/lexer.go
+d3c19fb9e4f990bb2b271c18e54529e2bdf65ee9ac41f27848dc1982cce24cdb  internal/parserrt/bound.go
+6ab9a915194563d12fc2fdde138f78f123b59bc37dd06650cd6009e575d3c74c  internal/parserrt/diagnostic.go
+86d318631a05fabace1c3484f0879e8a5d1daa8533014e5e1de4595f326261f8  internal/parserrt/message.go
+006d5bf12992d1f8a6eb2f69717ad4683424a995c0e55ccfd6f208c8efe3fde4  internal/parserrt/runtime.go
+a5b6a4fec054385d855bb5a16556f70988f7d3d51fa90126770ba520b8a1ca40  internal/recursion/options.go
+39cea92be8f5cd3c3f690f30b23cc6a9b2bd48e30d5e817a414ad23ca5eb85f1  internal/recursion/traversal.go
+
+Fixture source: sany-conformance recorded cases (sources.lock pins), files verbatim, under testdata/clean-rejections. U-4103c37b50b1 (deep-cuts inspection) and E-257dd8bdb327 (model one-shot) are sany-conformance's own cases, Copyright 2026 Christopher O'Connell, Apache-2.0. The D-* cases are sany-conformance Jazzer fuzz outputs (Apache-2.0 at set level) whose closest corpus files are TLA+ dc6a944429fe3e26104d38f9ff792d2d5d83f307 tlatools/org.lamport.tlatools/test-model/suite/test210.tla (MIT, see licenses/TLAplus.txt) for the test210 cases and tlaplus/tlapm 568722253719604cea2cbfaff537c58208084a87 test/fast/language/SubrefLL_test.tla (BSD-2-Clause, see licenses/tlapm.txt) for the SubrefLL_test cases. Their TLAPS.tla is tlaplus/tlapm 568722253719604cea2cbfaff537c58208084a87 library/TLAPS.tla, unmodified; BSD-2-Clause, see licenses/tlapm.txt. C-tests-specs-ovrentrylet-a281d5-delete-token is a sany-conformance mechanical mutant (seed 20261103, delete-token) of tlaplus-x/tlx bec5985379adbf143db9512cb1171dca37a804c2 tests/specs/OvrEntryLet.tla, with OvrEBase.tla from the same commit; MIT, see licenses/tlx.txt.
+eaeda83f92f94d78264d71f43384594dbb78019a938c7983bb3bbe88067a5c2f  testdata/clean-rejections/U-4103c37b50b1/AtPrefix.tla
+0cd051955be2a836264b237e341bc8d55cb0140de0cfbf91ea4258cedfa32546  testdata/clean-rejections/E-257dd8bdb327/Target.tla
+f19e7c296eca873dc525f46b084cf5f69e0bc6f9dc93dd4e08aff74bcad7d7cf  testdata/clean-rejections/D-2ebde0f7e165/test210.tla
+41e82fc80cb1dce2910a9cacd6feceb933b1f5466c1d13a3995b13754f7a3974  testdata/clean-rejections/D-3bb7d96df8a9/Target.tla
+207df24d811fe7e1d42d3cac4e859db99eea8ee0f1d759721f2296b6fbb27ef7  testdata/clean-rejections/D-ee4205c16ded/test210.tla
+1cd5812b425de9d3277b92193d0cd538328a27f55f6706e655418fc9bbe46490  testdata/clean-rejections/D-63187a1f9c31/SubrefLL_test.tla
+9afe54984062748a0568966434cc0945d682f8cd89fdbc38f73b5579751b0c55  testdata/clean-rejections/D-63187a1f9c31/TLAPS.tla
+9ce66e2b90f111cb1c581cc57f56b392a6427e2622ead807324ba5b289b14298  testdata/clean-rejections/D-d970fe3c26fb/SubrefLL_test.tla
+9afe54984062748a0568966434cc0945d682f8cd89fdbc38f73b5579751b0c55  testdata/clean-rejections/D-d970fe3c26fb/TLAPS.tla
+a221daefc7644a88159c5f9dd4c78502e0d5781092c82a06ed7d94ed5182cf92  testdata/clean-rejections/C-tests-specs-ovrentrylet-a281d5-delete-token/OvrEBase.tla
+820708de5aeb1d3d7c7087da59377b4be5e72308306d8499fd98275626d77b49  testdata/clean-rejections/C-tests-specs-ovrentrylet-a281d5-delete-token/OvrEntryLet.tla
+
+Fixture source: sany-conformance recorded cases (sources.lock pins), files verbatim, under testdata/label-extra-order. E-d0e6bde23d7c (deep-cuts model agents) and E-9469ef8c3889 (model one-shot) are sany-conformance's own cases, Copyright 2026 Christopher O'Connell, Apache-2.0. The D-* cases are sany-conformance Jazzer fuzz outputs (Apache-2.0 at set level) whose closest corpus files are tlaplus/tlapm 568722253719604cea2cbfaff537c58208084a87 test/fast/language/SubrefLL_test.tla (BSD-2-Clause, see licenses/tlapm.txt) for the SubrefLL_test cases and tlaplus-x/tlx bec5985379adbf143db9512cb1171dca37a804c2 tests/specs/SX1.tla (MIT, see licenses/tlx.txt) for the SX1 cases. TLAPS.tla and FiniteSets.tla are tlaplus/tlapm 568722253719604cea2cbfaff537c58208084a87 library/TLAPS.tla and library/FiniteSets.tla, unmodified; BSD-2-Clause, see licenses/tlapm.txt.
+5519e67a2f5f1667385e97862b6b7ca617f492da13b615ba5c73f3b889aef4fd  testdata/label-extra-order/E-d0e6bde23d7c/Test.tla
+b3fd04a01b5db288b5e03835f5b03e6a25aa0dc0866f3b86f011ea4078bcfe04  testdata/label-extra-order/E-9469ef8c3889/Target.tla
+7546dfbfe815e574de142b7ca7faac3eefc358d9365e70e797f092e097ae9de7  testdata/label-extra-order/D-07589fc5697b/SubrefLL_test.tla
+9afe54984062748a0568966434cc0945d682f8cd89fdbc38f73b5579751b0c55  testdata/label-extra-order/D-07589fc5697b/TLAPS.tla
+cd6a46c8fc8cfa1883c720737afb72ac1def69dc859b34b5375d081effa09679  testdata/label-extra-order/D-15c006f52fa6/SX1.tla
+4542bb39977f0aa7d4aa28cd48b530789a72c81d2f614e3b6ebd9449701b8065  testdata/label-extra-order/D-54cb9f0ad55d/SubrefLL_test.tla
+9afe54984062748a0568966434cc0945d682f8cd89fdbc38f73b5579751b0c55  testdata/label-extra-order/D-54cb9f0ad55d/TLAPS.tla
+6a946a8d1de007d1026e8260367e5e3934dcc600f0e09240606256554e9e04bf  testdata/label-extra-order/D-6299d741cdd4/SubrefLL_test.tla
+9afe54984062748a0568966434cc0945d682f8cd89fdbc38f73b5579751b0c55  testdata/label-extra-order/D-6299d741cdd4/TLAPS.tla
+c8774ee0df969734a96cb65fa1950e23498e0783d22914280141487d1cd0d34d  testdata/label-extra-order/D-75d805746643/SubrefLL_test.tla
+9afe54984062748a0568966434cc0945d682f8cd89fdbc38f73b5579751b0c55  testdata/label-extra-order/D-75d805746643/TLAPS.tla
+13f11c2a96b383947a650dde0a8b7e5b8a908886ca668d1762ca39bb49aa914c  testdata/label-extra-order/D-b3669c6d3c74/SubrefLL_test.tla
+9afe54984062748a0568966434cc0945d682f8cd89fdbc38f73b5579751b0c55  testdata/label-extra-order/D-b3669c6d3c74/TLAPS.tla
+746cb8249f1bdf82de03d7a6495542b58d9191f984e94d51d2d8a039a680f7bd  testdata/label-extra-order/D-b70169b8aa32/SubrefLL_test.tla
+9afe54984062748a0568966434cc0945d682f8cd89fdbc38f73b5579751b0c55  testdata/label-extra-order/D-b70169b8aa32/TLAPS.tla
+50f6a8ab13941f014cbda7de14ba0d4c64a60795846e46760102fb1764eface5  testdata/label-extra-order/D-b9ffa78941e1/SX1.tla
+eca905df95c16fb12f0f205a38b429c216a11b5c8429d270af044f05600a6380  testdata/label-extra-order/D-d0e270b834ea/FiniteSets.tla
+2f2394f37a894faa295adaf86bdf67cdb0b6534d045c9d315cae43a83fa42973  testdata/label-extra-order/D-d0e270b834ea/SX1.tla
+25b51c7a0ae6fac9d1e383d11d28096f34bf1324eda7ef82005d4eea2fe90f0f  testdata/label-extra-order/D-dc16bc8a4aee/SX1.tla
+
+Fixture source: sany-conformance recorded cases (sources.lock pins), files verbatim, under testdata/diagnostic-unit. All are sany-conformance Jazzer fuzz outputs from sets/ours-mechanical/fuzz-jazzer (Apache-2.0 at set level). Their closest corpus files are tlaplus/tlapm 568722253719604cea2cbfaff537c58208084a87 test/fast/language/INSTANCE_inside_LET_test.tla for D-0f79429a4cce, test/fast/language/INSTANCE_shift_due_to_omitted_modunits_test.tla for D-9421ecca2300 and D-775b33c0c1e1, and test/fast/language/SubrefLL_test.tla for D-6b9c94d6e912 and D-9978766c7f68 (BSD-2-Clause, see licenses/tlapm.txt); TLA+ dc6a944429fe3e26104d38f9ff792d2d5d83f307 tlatools/org.lamport.tlatools/test-model/Github1161.tla for D-1a969e12da5f (MIT, see licenses/TLAplus.txt); and tlaplus-x/tlx bec5985379adbf143db9512cb1171dca37a804c2 tests/specs/TSFSpecInst.tla for D-cabb48f9aaa0 (MIT, see licenses/tlx.txt). The shared TLAPS.tla is tlaplus/tlapm 568722253719604cea2cbfaff537c58208084a87 library/TLAPS.tla, unmodified; BSD-2-Clause, see licenses/tlapm.txt.
+c628d6e4b44c345980f9ba41410044a0acd3c34c65ade08f0008f3f198773a18  testdata/diagnostic-unit/D-0f79429a4cce/INSTANCE_inside_LET_test.tla
+106173e0f890576e6b4ea41296f0f299fdfcfa453bc1a978fbc327eb060b7918  testdata/diagnostic-unit/D-1a969e12da5f/Github1161.tla
+d17e98fb67c65d1421f6f129fbcbd14434c4de3cc5eebb4cc465f08207d275df  testdata/diagnostic-unit/D-6b9c94d6e912/get.tla
+18c167aa9fbd2c70e01b386366e2c34a5268fc5ca55d782fab3121c5b2d2d88d  testdata/diagnostic-unit/D-775b33c0c1e1/Ie_to_omitted_modunits_test.tla
+4288ca0ea5196cfa4cee890f76719c75a25d7256dcdaf5750ce868b5447801cd  testdata/diagnostic-unit/D-9421ecca2300/get.tla
+94e15459dbdfd1d1a3f4577385e30e918ea6e0e5d14fd5f7d04514ddfbd11602  testdata/diagnostic-unit/D-9978766c7f68/get.tla
+342eb7a297fc03a00314aa00fac8e9b5c8ff2068cc92db8279bd714504ac1650  testdata/diagnostic-unit/D-cabb48f9aaa0/TSFSpecInsEOFt.tla
+9afe54984062748a0568966434cc0945d682f8cd89fdbc38f73b5579751b0c55  testdata/diagnostic-unit/TLAPS.tla
+
+Fixture source: sany-conformance 31272159ce438c9fa61dbd6b12508b621e434583 recorded cases, files verbatim, under testdata/proof-runtime. All three are sany-conformance Jazzer fuzz outputs (Apache-2.0 at set level, see that set's LICENSE.md) generated by the dictionary method from data/fuzz-dictionary.txt (itself generated from tla+.jj); D-6a550fecb6ab and D-cc6f40e2dfb6 are from deep-cuts/ours-mechanical/fuzz-jazzer and D-5ba7194164bc from sets/ours-mechanical/fuzz-jazzer. Stock SANY crashes on each (java.lang.NumberFormatException while parsing).
+14162b0a29e80345d4e1da6ce3cf4f39ca4265f5b2b13c61adc11292e7f24aae  testdata/proof-runtime/D-6a550fecb6ab/Test.tla
+52976242b91a8e189b95751a6973288a2e0de407bfed27fe01050ebdc02a16c5  testdata/proof-runtime/D-cc6f40e2dfb6/Test.tla
+54a464cefdeeb0e80e63e31bdcc13b968f9904fa14d9b181a1d990e360201069  testdata/proof-runtime/D-5ba7194164bc/Test.tla

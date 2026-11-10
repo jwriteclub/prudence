@@ -1,0 +1,107 @@
+# Copyright 2026 Christopher O'Connell
+# SPDX-License-Identifier: Apache-2.0
+#
+# Finite raw-byte UTF-8 corpus. See README.md in this directory for the
+# format, templates, expectation keys and status values. One row per line,
+# seven tab-separated fields:
+#
+# id	form	bytes	groups	expect	basis	status
+D1	C K	\xff	bad/1	-	UTF_8.java:316-317	source
+D2	C K	\xfe	bad/1	-	UTF_8.java:316-317	source
+D3	C K	\x80	bad/1	-	UTF_8.java:316-317	source
+D4	C K	\xbf	bad/1	-	UTF_8.java:316-317	source
+D5	C K	\x80\x80	bad/1 bad/1	-	UTF_8.java:316-317	source
+D6	C K	\xc0\xaf	bad/1 bad/1	-	UTF_8.java:243 UTF_8.java:316-317	source
+D7	C K	\xc1\xbf	bad/1 bad/1	-	UTF_8.java:243 UTF_8.java:316-317	source
+D8	C K	\xc2\x20	bad/1 U+0020/1	-	UTF_8.java:255-256	source
+D9	C K	\xe0\x80\x80	bad/1 bad/1 bad/1	-	UTF_8.java:100-104 UTF_8.java:142-147	source
+D10	C K	\xe0\x9f\xbf	bad/1 bad/1 bad/1	-	UTF_8.java:100-104 UTF_8.java:142-147	source
+D11	C K	\xe0\xa0\x20	bad/2 U+0020/1	-	UTF_8.java:142-147	source
+D12	C K	\xe2\x82\x20	bad/2 U+0020/1	-	UTF_8.java:142-147	source
+D13	C K	\xe2\x20	bad/1 U+0020/1	-	UTF_8.java:142-147	source
+D14	C K	\xed\xa0\x80	bad/3	-	UTF_8.java:281-282	source
+D15	C K	\xed\xbf\xbf	bad/3	-	UTF_8.java:281-282	source
+D16	C K	\xed\xa0\xbd\xed\xb8\x80	bad/3 bad/3	-	UTF_8.java:281-282	source
+D17	C K	\xed\xa0\x20	bad/2 U+0020/1	-	UTF_8.java:142-147	source
+D18	C K S	\xed\x9f\xbf	U+D7FF/3	-	UTF_8.java:262-284	source
+D19	C K S	\xee\x80\x80	U+E000/3	-	UTF_8.java:262-284	source
+D20	C K S	\xef\xbf\xbe	U+FFFE/3	-	UTF_8.java:262-284	source
+D21	C K S	\xef\xbf\xbf	U+FFFF/3	-	UTF_8.java:262-284	source
+D22	C K S	\xef\xbf\xbd	U+FFFD/3	-	UTF_8.java:262-284	source
+D23	C K	\xf0\x80\x80\x80	bad/1 bad/1 bad/1 bad/1	-	UTF_8.java:309-311 UTF_8.java:148-158	source
+D24	C K	\xf0\x8f\xbf\xbf	bad/1 bad/1 bad/1 bad/1	-	UTF_8.java:148-158	source
+D25	C K	\xf0\x90\x80\x20	bad/3 U+0020/1	-	UTF_8.java:148-158	source
+D26	C K	\xf0\x9f\x20	bad/2 U+0020/1	-	UTF_8.java:148-158	source
+D27	C K	\xf0\x20	bad/1 U+0020/1	-	UTF_8.java:148-158	source
+D28	C K	\xf0\x9f\x98\xe2\x82\xac	bad/3 U+20AC/3	-	UTF_8.java:148-158	source
+D29	C K S	\xf4\x8f\xbf\xbf	U+10FFFF/4	-	UTF_8.java:313-314	source
+D30	C K	\xf4\x90\x80\x80	bad/1 bad/1 bad/1 bad/1	-	UTF_8.java:148-158	source
+D31	C K	\xf5\x80\x80\x80	bad/1 bad/1 bad/1 bad/1	-	UTF_8.java:151-155	source
+D32	C K	\xf7\xbf\xbf\xbf	bad/1 bad/1 bad/1 bad/1	-	UTF_8.java:151-155	source
+D33	C K	\xf8\x88\x80\x80\x80	bad/1 bad/1 bad/1 bad/1 bad/1	-	UTF_8.java:316-317	source
+D34	C K	\xfc\x84\x80\x80\x80\x80	bad/1 bad/1 bad/1 bad/1 bad/1 bad/1	-	UTF_8.java:316-317	source
+D35	C K S	\xf0\x9f\x98\x80	U+1F600/4	-	UTF_8.java:313-314	source
+D36	C K S	\xe2\x82\xac	U+20AC/3	-	UTF_8.java:262-284	source
+L1	C	\xe2\x82\t	bad/2 U+0009/1	-	UTF_8.java:142-147 SimpleCharStream.java:169-171	source
+L2	raw	---- MODULE M ----\n(* \xe2\x82\n*) @\n====\n	bad/2	jpos=24:2:5 jpos=25:3:1 parse=3:4@28	UTF_8.java:94-95,:142-147 SimpleCharStream.java:144-167	source
+L3	raw	---- MODULE M ----\n(* \xe2\x82\r\n*) @\n====\n	bad/2	jpos=24:2:5 jpos=26:3:1 parse=3:4@29	UTF_8.java:94-95,:142-147 SimpleCharStream.java:144-167	source
+L4	raw	---- MODULE M ----\n(* \xe2\x82\r*) @\n====\n	bad/2	jpos=24:2:5 jpos=25:3:1 parse=3:4@28	UTF_8.java:94-95,:142-147 SimpleCharStream.java:144-167	source
+L5	raw	---- MODULE M ----\n(* \xf0\x9f\r\n*) @\n====\n	bad/2	jpos=24:2:5 jpos=26:3:1 parse=3:4@29	UTF_8.java:94-95,:148-158 SimpleCharStream.java:144-167	source
+E1	T	\xc2	bad/1	-	CharsetDecoder.java:594-595 UTF_8.java:264-268,:288-296	source; oracle=eof-message
+E2	T	\xe2	bad/1	-	CharsetDecoder.java:594-595 UTF_8.java:264-268,:288-296	source; oracle=eof-message
+E3	T	\xe2\x82	bad/2	-	CharsetDecoder.java:594-595 UTF_8.java:264-268,:288-296	source; oracle=eof-message
+E4	T	\xe0\xa0	bad/2	-	CharsetDecoder.java:594-595 UTF_8.java:264-268,:288-296	source; oracle=eof-message
+E5	T	\xe0\x80	bad/1 bad/1	-	CharsetDecoder.java:594-595 UTF_8.java:264-268,:288-296	source; oracle=eof-message
+E6	T	\xed\xa0	bad/2	-	CharsetDecoder.java:594-595 UTF_8.java:264-268,:288-296	source; oracle=eof-message
+E7	T	\xf0\x9f\x98	bad/3	-	CharsetDecoder.java:594-595 UTF_8.java:264-268,:288-296	source; oracle=eof-message
+E8	T	\xf0\x90	bad/2	-	CharsetDecoder.java:594-595 UTF_8.java:264-268,:288-296	source; oracle=eof-message
+E9	T	\xf4\x90	bad/1 bad/1	-	CharsetDecoder.java:594-595 UTF_8.java:264-268,:288-296	source; oracle=eof-message
+E10	T	\xf5	bad/1	-	CharsetDecoder.java:594-595 UTF_8.java:264-268,:288-296	source; oracle=eof-message
+B1	raw	\xef\xbb\xbf---- MODULE M ----\n====\n	U+FEFF/3	jpos=0:1:1 jpos=3:1:2	UTF_8.java:217-406 (no BOM logic)	source; oracle=bom-outcome
+B2	raw	\xef\xbb\xbf\xef\xbb\xbf---- MODULE M ----\n====\n	U+FEFF/3 U+FEFF/3	jpos=3:1:2 jpos=6:1:3	UTF_8.java:217-406 (no BOM logic)	source; oracle=bom-outcome
+B3	K	\xef\xbb\xbf	U+FEFF/3	-	UTF_8.java:262-284 TokenMgrError.java:40-60	source
+B4	resolver	\xef\xbb\xbf---- MODULE N ----\ny == \xef\xbb\xbf\n====\n	U+FEFF/3 U+FEFF/3	-	ParseUnit.java:312 TLAplusParser.java:447-448	source; oracle=bom-outcome
+B5	raw	\xef\xbb\xbf---- MODULE M ----\nEXTENDS N\n====\n---- MODULE N ----\n====\n	U+FEFF/3	extract=M:none extract=N@37-61	MonolithSpecExtractor.java:77-108	inferred
+X1-8190	C@8190	\xf0\x9f\x98\x80	U+1F600/4	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X1-8191	C@8191	\xf0\x9f\x98\x80	U+1F600/4	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X1-16382	C@16382	\xf0\x9f\x98\x80	U+1F600/4	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X1-16383	C@16383	\xf0\x9f\x98\x80	U+1F600/4	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X2-8190	C@8190	\xed\xa0\x80	bad/3	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X2-8191	C@8191	\xed\xa0\x80	bad/3	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X2-16382	C@16382	\xed\xa0\x80	bad/3	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X2-16383	C@16383	\xed\xa0\x80	bad/3	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X3-8190	C@8190	\xe2\x82\x20	bad/2 U+0020/1	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X3-8191	C@8191	\xe2\x82\x20	bad/2 U+0020/1	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X3-16382	C@16382	\xe2\x82\x20	bad/2 U+0020/1	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X3-16383	C@16383	\xe2\x82\x20	bad/2 U+0020/1	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X4-8190	C@8190	\xf0\x9f\x98\xe2\x82\xac	bad/3 U+20AC/3	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X4-8191	C@8191	\xf0\x9f\x98\xe2\x82\xac	bad/3 U+20AC/3	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X4-16382	C@16382	\xf0\x9f\x98\xe2\x82\xac	bad/3 U+20AC/3	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X4-16383	C@16383	\xf0\x9f\x98\xe2\x82\xac	bad/3 U+20AC/3	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X5-8190	C@8190	\xf0\x90\x80\x20	bad/3 U+0020/1	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X5-8191	C@8191	\xf0\x90\x80\x20	bad/3 U+0020/1	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X5-16382	C@16382	\xf0\x90\x80\x20	bad/3 U+0020/1	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X5-16383	C@16383	\xf0\x90\x80\x20	bad/3 U+0020/1	-	StreamDecoder.java:256,273-303 UTF_8.java:264-268,:288-296	source
+X6-u4095	C@4095	\xf0\x9f\x98\x80	U+1F600/4	-	SimpleCharStream.java:112,294-297 StreamDecoder.java:307-312	source
+X6-u8191	C@8191	\xf0\x9f\x98\x80	U+1F600/4	-	SimpleCharStream.java:112,294-297 StreamDecoder.java:307-312	source
+M1	raw	---- MODULE M ----\nEXTENDS N\n\\* \xff\nx == y\n====\n---- MODULE N ----\ny == 1\n====\n	bad/1	check=semantic extract=N@46-77	FileUtil.java:394-404 MonolithSpecExtractor.java:77-108; corpus D-1c72b6b367c5	inferred
+M2	raw	---- MODULE M ----\nEXTENDS N\nx == y\n====\n---- MODULE N ----\n\\* \xe2\x82\ny == 1\n====\n	bad/2	check=semantic extract=N@41-78	MonolithSpecExtractor.java:77-108 UTF_8.java:142-147	inferred
+M2z	raw	---- MODULE M ----\nEXTENDS N\nx == y\n====\n---- MODULE N ----\n\\* \xe2\x82\ny == z\n====\n	bad/2	checksem=71-72 extract=N@41-78	MonolithSpecExtractor.java:77-108 UTF_8.java:142-147	inferred
+M3	raw	---- MODULE M ----\nEXTENDS N\nx == y\n====\n---- MODULE N ----\ny == \xe2\x82\n====\n	bad/2	extract=N@41-73 extractlex=N:2:6@65-67 trail=65-67 checklex=M.tla:2:6@65-67	TLAplusParser.java:1458-1472 TokenMgrError.java:40-60	inferred; tail=info
+M4	raw	---- MODULE M ----\rEXTENDS N\r\\* \xff\rx == y\r====\r---- MODULE N ----\r\\* \xe2\x82\ry == 1\r====\r	bad/1 bad/2	check=semantic extract=N@46-83	BufferedReader.java:316-380 PrintWriter.java:561-565	inferred
+M4z	raw	---- MODULE M ----\rEXTENDS N\r\\* \xff\rx == y\r====\r---- MODULE N ----\r\\* \xe2\x82\ry == z\r====\r	bad/1 bad/2	checksem=76-77 extract=N@46-83	BufferedReader.java:316-380 PrintWriter.java:561-565	inferred
+M5	raw	---- MODULE M ----\nEXTENDS N\nx == y\n====\n---- MODULE N \xff----\ny == 1\n====\n	bad/1	extract=N:none trail=55-56 checktail=root	MonolithSpecExtractor.java:77-108 (matches)	inferred; tail=info
+M6a	raw	---- MODULE M ----\nEXTENDS N\nx == y\n====\n---- MODULE N ----\ny == 1\n====\x85\nz == 2\n====\n	bad/1	extract=N@41-73 trail=71-72 check=semantic	MonolithSpecExtractor.java:77-108 (====.*) UTF_8.java:316-317	inferred; tail=info
+M6b	raw	---- MODULE M ----\nEXTENDS N\nx == y\n====\n---- MODULE N ----\ny == 1\n====\xc2\x85\nz == 2\n====\n	U+0085/2	extract=N@41-86 trail=71-73 check=semantic	MonolithSpecExtractor.java:77-108 (====.*) Pattern dot	inferred; tail=info
+M7	resolver	---- MODULE N ----\n\\* \xff\ny == 1\n====\n	bad/1	check=semantic	FileUtil.java:342-391 NamedInputStream.java:25,33-35	source
+M8	resolver	---- MODULE N ----\ny == \xff\n====\n	bad/1	checklex=N.tla:2:6@24-25	FileUtil.java:342-391 TokenMgrError.java:40-60	source
+M9a	raw	---- MODULE M ----\nx == 1\n====\nnostd\x94\x8d x\n	bad/1 bad/1	strict=clean trail=36-37,37-38 check=semantic checktail=root	TLAplusParser.java:83,1458-1472	source; tail=info
+M9b	raw	---- MODULE M ----\nx == 1\n====\n\xc2\x80\n	U+0080/2	strict=clean trail=31-33 check=semantic checktail=root	TLAplusParser.java:83,1458-1472	source; tail=info
+M9c	raw	---- MODULE M ----\nx == 1\n====\n\xef\xbf\xbc\n	U+FFFC/3	strict=clean trail=31-34 check=semantic checktail=root	TLAplusParser.java:83,1458-1472	source; tail=info
+M9d	raw	---- MODULE M ----\nx == 1\n====\n\xf0\x9f\x98	bad/3	strict=clean trail=31-34 check=semantic checktail=root	TLAplusParser.java:83,1458-1472	source; tail=info
+M10	raw	---- MODULE M ----\nI == INSTANCE Inner\n====\n\x94\x8d\n---- MODULE Inner ----\nv == 1\n====\n	bad/1 bad/1	strict=clean extract=Inner@47-82 trail=44-45,45-46 check=semantic	TLAplusParser.java:1458-1472 MonolithSpecExtractor.java:77-108; corpus D-2bbcc1873d94	inferred; tail=info
+I1	raw	---- MODULE M ----\nEXTENDS N\n\\* \xff\nx == y\n====\n---- MODULE N ----\n\\* \xe2\x82\ny == 1\n====\n	bad/1 bad/2	check=semantic	prudence.go Check request copy	source
+I2-ff	raw	---- MODULE M ----\n(* \xff *)\nx == y\n====\n	bad/1	checksem=32-33	UTF_8.java:243,:262-284,:316-317	source
+I2-efbfbd	raw	---- MODULE M ----\n(* \xef\xbf\xbd *)\nx == y\n====\n	U+FFFD/3	checksem=34-35	UTF_8.java:243,:262-284,:316-317	source
+I2-c0	raw	---- MODULE M ----\n(* \xc0 *)\nx == y\n====\n	bad/1	checksem=32-33	UTF_8.java:243,:262-284,:316-317	source
+I3	raw	---- MODULE M ----\nx == \xed\xa0\x80\n====\n	bad/3	lex=2:6@24-27 token=24-27 fallback=2:6@24-27	UTF_8.java:281-282	source

@@ -273,6 +273,9 @@ func (p *resolvedProjector) project(node levelNode) (ResolvedNode, error) {
 		n.Except = p.ref(v.except)
 		n.Component = p.ref(v.component)
 	case *labelNode:
+		if !v.name.displayExact {
+			return n, fmt.Errorf("unrepresentable UTF-16 label name at %v", n.Span)
+		}
 		n.Kind = "label"
 		n.Name = v.name.text
 		n.Body = p.ref(v.body)
@@ -287,6 +290,9 @@ func (p *resolvedProjector) project(node levelNode) (ResolvedNode, error) {
 	case *instanceNode:
 		n.Kind = "instance"
 		if v.name != nil {
+			if !v.name.displayExact {
+				return n, fmt.Errorf("unrepresentable UTF-16 instance name at %v", n.Span)
+			}
 			n.Name = v.name.text
 		}
 		n.Local = v.local

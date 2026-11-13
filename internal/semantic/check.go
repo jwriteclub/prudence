@@ -49,7 +49,18 @@ const checkWorkLimit = 1 << 24
 // node is kept for the whole call. This is a runtime identity only: it does
 // not certify a Java UID mapping, and private conformance observations keep
 // their stricter identity.
-func CheckFlatExternal(ctx stdcontext.Context, acquisition *modulegraph.Acquisition, maxDepth int, levels bool) (out CheckOutcome) {
+func CheckFlatExternal(ctx stdcontext.Context, acquisition *modulegraph.Acquisition, maxDepth int, levels bool) CheckOutcome {
+	return checkFlatExternal(ctx, acquisition, maxDepth, levels, nil)
+}
+
+// The internal exporter takes a snapshot of the same completed run as Check.
+type checkedGraph struct {
+	root    *moduleNode
+	modules []*moduleNode
+	checker *levelChecker
+}
+
+func checkFlatExternal(ctx stdcontext.Context, acquisition *modulegraph.Acquisition, maxDepth int, levels bool, graph *checkedGraph) (out CheckOutcome) {
 	out.Site = "not-applicable"
 	if ctx == nil || maxDepth <= 0 {
 		out.Err = ErrPortIncomplete
@@ -106,9 +117,12 @@ func CheckFlatExternal(ctx stdcontext.Context, acquisition *modulegraph.Acquisit
 			return err
 		}
 	}
-	details, examined, root, _, err := analyzeFlatExternalProfile(ctx, acquisition, maxDepth, levels, hook, &trace)
+	details, examined, root, modules, err := analyzeFlatExternalProfile(ctx, acquisition, maxDepth, levels, hook, &trace)
 	if observed <= len(details) {
 		record(details, StageGeneration)
+	}
+	if graph != nil && err == nil {
+		*graph = checkedGraph{root, modules, checker}
 	}
 	out.Examined = examined
 	switch {
